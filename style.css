@@ -1,0 +1,35 @@
+body {
+    background-color: lightgoldenrodyellow;
+    font-family: "sans-serif"
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
+    color: coral;
+}
+h2{
+    color: green
+}
+h3{
+    color:aqua
+}
+p {
+    font-size: 17px;
+}
+
+header {
+    background-color: darkblue;
+    color: white;
+    padding: 15px;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
