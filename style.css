@@ -21,10 +21,31 @@ p {
     font-size: 17px;
 }
 
+.nav-menu{
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-menu a{
+    text-decoration: none;
+    color: white; 
+    padding: 8px 12px;
+    
+}
+
+.nav-menu a:hover {
+    color: rgb(0, 255, 187);
+    background-color: black;
+    border-radius: 10px;
+}
+
 header {
     background-color: darkblue;
     color: white;
-    padding: 15px;
+    padding: 10px;
+    display: flex;
+    justify-content:space-between;
 }
 
 footer {
