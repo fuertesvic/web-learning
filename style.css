@@ -8,6 +8,32 @@ main {
     margin: auto;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 500px;
+}
+
+input,
+textarea {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid green;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+    padding: 10px;
+    background-color: rgb(10, 131, 3);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: rgb(14, 209, 4);
+}
+
 h1 {
     color: coral;
 }
