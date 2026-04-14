@@ -15,7 +15,7 @@ h2{
     color: green
 }
 h3{
-    color:aqua
+    color:rgb(255, 0, 0)
 }
 p {
     font-size: 17px;
@@ -44,6 +44,13 @@ p {
     color: seagreen;
     border-radius: 10px;
 }
+
+.subtext {
+    font-family: 'Courier New', Courier, monospace;
+    color:green;
+    text-align: right;
+}
+
 
 header {
     background-color: rgba(1, 98, 1, 0.952);
