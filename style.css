@@ -34,6 +34,16 @@ button:hover {
     background-color: rgb(14, 209, 4);
 }
 
+.hero {
+    background-color: lightblue;
+    padding: 60px 20px;
+
+    text-align: left;
+}
+
+.hero-link-container {
+    text-align: right;
+}
 h1 {
     color: coral;
 }
