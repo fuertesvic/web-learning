@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
-    <title>Projectes</title>
+    <title>Pàgina Principal</title>
+    
 </head>
-
+<body>  
 <header>
     Víctor Fuertes Centeno 
 <nav>   
     <ul class="nav-menu">   
     <li><a href="index.html">Pàgina de Benvinguda</a></li>
-    <li><a href="projects.html"class="active">Projectes</a></li>
+    <li><a href="projects.html">Projectes</a></li>
     <li><a href="contact.html">Contacte</a></li>
     <li><a href="about.html">Sobre mi</a></li>
-    <li><a href="tasks.html"></a>Tasques</li>
+    <li><a href="tasks.html" class="active">Tasques</a></li>
     <li><a href="web_learn.html">Aprenentatge de Desenvolupament Web</a></li>
 </ul>
 </nav>
 </header>
+<h2>Llistat de Tasques</h2>
+<input
+    type="text"
+    id="taskInput"
+    placeholder="Escriu una tasca"
+>
 
-<main>
-    Podeu veure els meus projectes al meu <a href="https://github.com/fuertesvic"> GitHub</a> <img src="images/github_logo.png" width="30" alt="github">
-</main>
-<footer><i>Fet amb molta il·lusió per Víctor Fuertes</i></footer>
+<button id="taskButton">Afegir Tasca</button>
+
+<ul id="taskList">  
+
+</ul>
+<script src="tasks.js"></script>
+</body>
 </html>

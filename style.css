@@ -96,6 +96,21 @@ header {
     justify-content:space-between;
 }
 
+.completed {
+    text-decoration: line-through;
+    color: gray;
+    opacity: 0.7;
+}
+
+#taskList li {
+    cursor: pointer;
+    padding: 5px;
+}
+
+#taskList li:hover {
+    background-color: #02ff39;
+}
+
 footer {
     background-color: black;
     color: white;

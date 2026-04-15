@@ -1,3 +1,4 @@
+// Botó per index.html: Text canviant
 let button = document.getElementById("helloButton");
 let message = document.getElementById("messageText")
 
@@ -11,6 +12,7 @@ button.addEventListener("click", function() {
     else{
         message.textContent = "Aquest text canviarà...";
     }
-    
-
 });
+
+
+
