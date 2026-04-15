@@ -108,7 +108,11 @@ header {
 }
 
 #taskList li:hover {
-    background-color: #02ff39;
+    background-color: #c8f1d1;
+}
+
+#taskList button{
+    margin-left: 15px;
 }
 
 footer {
