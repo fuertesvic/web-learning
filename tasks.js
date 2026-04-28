@@ -169,17 +169,16 @@ function renderTasks(){
         
         if (task.createdDate) {
             let date = new Date(task.createdDate);
-            formattedDate = date.toLocaleString();
+            formattedDate = formatDate(date);
         }
         else {
             formattedDate = "No date";
         }
 
-        
-
         dateComponent = document.createElement("small");
+        dateComponent.classList.add("task-date");
         dateComponent.textContent = formattedDate;
-
+     
         if (task.completed) {
             newTask.classList.add("completed");
         }
@@ -244,6 +243,17 @@ function loadFilter(){
     if (savedFilter !== null){
         currentFilter = savedFilter;
     }
+}
+
+function formatDate(date) {
+  const dd = String(date.getDate()).padStart(2, '0');
+  const mm = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0‑based
+  const yyyy = date.getFullYear();
+
+  const hh = String(date.getHours()).padStart(2, '0');
+  const min = String(date.getMinutes()).padStart(2, '0');
+
+  return `${dd}-${mm}-${yyyy} ${hh}:${min}`;
 }
 
 loadTasks();

@@ -40,16 +40,16 @@ button:hover {
     border-style: double;
 }
 
-small{
-    font-family: 'Courier New', Courier, monospace;
-    color: gray;
+.task-date{
+ font-family: 'Courier New', Courier, monospace;
+    color: #777;
     font-size: 0.8em;
     margin-left: 15px;
 }
+   
 .hero {
     background-color: lightblue;
     padding: 60px 20px;
-
     text-align: left;
 }
 
