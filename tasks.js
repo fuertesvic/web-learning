@@ -67,14 +67,15 @@ addTaskButton.addEventListener("click", function(){
 });
 
 
-// funció per crear tasques, 
-// utilitzada pel botó (Afegir Tasca) i també per l'inicialització de tasques guardades a la memòria.
+// funció per crear tasques utilitzada pel botó (Afegir Tasca) i també per l'inicialització de tasques guardades a la memòria.
 function createTaskItem(taskText, isCompleted = false) {
 
     tasks.push({
         text: taskText,
-        completed: isCompleted
+        completed: false,
+        createdDate: new Date()
     })
+    console.log(tasks);
     renderTasks();
 }
 
@@ -83,6 +84,8 @@ function createTaskItem(taskText, isCompleted = false) {
 showAllTasksButton.addEventListener("click", function() {
     currentFilter = "all";
     renderTasks();
+    updateActiveFilterButton();
+    localStorage.setItem("currentFilter", currentFilter);
 });
 
 
@@ -90,13 +93,16 @@ showAllTasksButton.addEventListener("click", function() {
 showPendingTasksButton.addEventListener("click", function() {
     currentFilter = "pending";
     renderTasks();
+    updateActiveFilterButton();
+    localStorage.setItem("currentFilter", currentFilter);
 });
-
 
 // Llògica pel botó "Completades"
 showCompletedTasksButton.addEventListener("click", function() {
     currentFilter = "completed";
     renderTasks();
+    updateActiveFilterButton();   
+    localStorage.setItem("currentFilter", currentFilter); 
 });
 
 
@@ -122,24 +128,23 @@ function updateTaskCounts() {
     allTasksCounter.textContent = tasks.length;
 }
 
-
 // funció per guardar tasques encara que es refresqui el navegador, guarda totes les tasques actuals
 function saveTasks() {
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
-
+    localStorage.setItem("currentFilter", currentFilter);
 }
 
 // funció per carregar tasques des de la memòria del navegador
 function loadTasks(){
     
     let savedTasks = localStorage.getItem("tasks");
-
-    tasks = JSON.parse(savedTasks)
-
+    tasks = JSON.parse(savedTasks);
+      
     renderTasks();
 }
 
+// funció per crear visualmnt les tasques a l'HTML.
 function renderTasks(){
 
     console.log("Rendering Tasks!");
@@ -150,18 +155,36 @@ function renderTasks(){
     // Itera l'array de tasques i manté un index
     tasks.forEach(function(task, index) {
 
+        // Filtres de visibilitat
         if (currentFilter === "pending" && task.completed) {
             return;
         }
         if (currentFilter === "completed" && !task.completed){
             return;
         }
+
+        // HTML de la tasca en sí el text i la data de creació
         let newTask = document.createElement("li");
-        newTask.textContent = task.text ;
+        newTask.textContent = task.text;
+        
+        if (task.createdDate) {
+            let date = new Date(task.createdDate);
+            formattedDate = date.toLocaleString();
+        }
+        else {
+            formattedDate = "No date";
+        }
+
+        
+
+        dateComponent = document.createElement("small");
+        dateComponent.textContent = formattedDate;
+
         if (task.completed) {
             newTask.classList.add("completed");
         }
 
+        
         // Possibilitat de completar tasques fent-li clic.
         newTask.addEventListener("click", function(){
             
@@ -190,7 +213,8 @@ function renderTasks(){
         
         });
 
-        // Afegeix el botó a la tasca, i la tasca a la llista.
+        // Afegeix el botó i la Data a la tasca, i la tasca a la llista.
+        newTask.appendChild(dateComponent);
         newTask.appendChild(removeButton);
         taskList.appendChild(newTask);
 
@@ -198,5 +222,31 @@ function renderTasks(){
     updateTaskCounts();
 }
 
+function updateActiveFilterButton(){
+    showAllTasksButton.classList.remove("active-filter");
+    showCompletedTasksButton.classList.remove("active-filter");
+    showPendingTasksButton.classList.remove("active-filter");
+
+    if (currentFilter === "all"){
+        showAllTasksButton.classList.add("active-filter");
+    }  
+    if (currentFilter === "pending"){
+        showPendingTasksButton.classList.add("active-filter");
+    } 
+    if (currentFilter === "completed"){
+        showCompletedTasksButton.classList.add("active-filter");
+    } 
+
+}
+
+function loadFilter(){
+    let savedFilter = localStorage.getItem("currentFilter");
+    if (savedFilter !== null){
+        currentFilter = savedFilter;
+    }
+}
 
 loadTasks();
+loadFilter();
+renderTasks();
+updateActiveFilterButton();
