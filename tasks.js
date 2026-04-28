@@ -1,11 +1,23 @@
-// Classe que encapsula la lògica de creació, esborrar i guardar en la memòria del navegador les tasques.
+// Organitzador de Tasques
+/* 
 
-// Botó per tasks.html - afegir tasques
+Autor: Víctor Fuertes Centeno
+Data : Abril de 2026
+Descripció: Classe que encapsula la lògica de creació, esborrar i guardar en la memòria del navegador les tasques.
+--Aquesta classe forma part del projecte web_learn, on estic auto-aprenent desenvolupament web--
+*/
+ 
+
+// Inicialitzar els elements de l'html
 let taskInput = document.getElementById("taskInput");
 let addTaskButton = document.getElementById("addTaskButton");
 let taskList = document.getElementById("taskList");
+let showAllTasksButton = document.getElementById("showAllTasksButton");
+let showPendingTasksButton = document.getElementById("showPendingTasksButton");
+let showCompletedTasksButton = document.getElementById("showCompletedTasksButton");
   
 
+// Lògica de l'input per Afegir Tasca
 taskInput.addEventListener("keydown", function(event) {
 
     if (event.key === "Enter") {
@@ -115,6 +127,54 @@ function createTaskItem(taskText, isCompleted = false) {
 
 }
 
+
+// Llògica pel botó "Totes", de mostrar totes les tasques
+showAllTasksButton.addEventListener("click", function() {
+    // Selecciona totes les tasques
+    let taskItems = document.querySelectorAll("#taskList li");
+    // Recorre totes les tasques
+    taskItems.forEach(function(task){
+        
+        // Mostra la tasca
+        task.style.display = "";
+
+    });
+});
+
+
+// Llògica pel botó "Per Completar", de mostrar totes les tasques
+showPendingTasksButton.addEventListener("click", function() {
+    let taskItems = document.querySelectorAll("#taskList li");
+    taskItems.forEach(function(task){
+        if (task.classList.contains("completed")){
+            // Amaga la tasca
+            task.style.display = "none";
+        }
+        else{
+            task.style.display = "";
+        }
+
+    });
+});
+
+
+// Llògica pel botó "Completades"
+showCompletedTasksButton.addEventListener("click", function() {
+    let taskItems = document.querySelectorAll("#taskList li");
+    taskItems.forEach(function(task){
+    
+        if (task.classList.contains("completed")){
+
+            task.style.display = "";
+        }
+        else{
+            task.style.display = "none";
+        }
+
+    });
+
+});
+
 // funció per guardar tasques encara que es refresqui el navegador, guarda totes les tasques actuals
 function saveTasks() {
 
@@ -154,5 +214,6 @@ function loadTasks(){
     });
 
 }
+
 
 loadTasks();
