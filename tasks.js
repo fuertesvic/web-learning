@@ -72,7 +72,7 @@ function createTaskItem(taskText, isCompleted = false) {
 
     tasks.push({
         text: taskText,
-        completed: false,
+        completed: isCompleted,
         createdDate: new Date()
     })
     console.log(tasks);
@@ -139,10 +139,9 @@ function saveTasks() {
 function loadTasks(){
     
     let savedTasks = localStorage.getItem("tasks");
-    tasks = JSON.parse(savedTasks);
-      
-    renderTasks();
-}
+    tasks = JSON.parse(savedTasks) || [];
+    
+    }
 
 // funció per crear visualmnt les tasques a l'HTML.
 function renderTasks(){
@@ -151,6 +150,13 @@ function renderTasks(){
 
     // Esborra el contingut html
     taskList.innerHTML = "";
+    updateTaskCounts();
+
+    if (tasks.length === 0){
+        console.log("no tasks yet!");
+        return;
+    }
+    
 
     // Itera l'array de tasques i manté un index
     tasks.forEach(function(task, index) {
@@ -166,10 +172,10 @@ function renderTasks(){
         // HTML de la tasca en sí el text i la data de creació
         let newTask = document.createElement("li");
         newTask.textContent = task.text;
-        
+        let formattedDate;
+
         if (task.createdDate) {
-            let date = new Date(task.createdDate);
-            formattedDate = formatDate(date);
+            formattedDate = formatDate(new Date(task.createdDate));
         }
         else {
             formattedDate = "No date";
@@ -218,7 +224,7 @@ function renderTasks(){
         taskList.appendChild(newTask);
 
     });
-    updateTaskCounts();
+
 }
 
 function updateActiveFilterButton(){
@@ -256,7 +262,7 @@ function formatDate(date) {
   return `${dd}-${mm}-${yyyy} ${hh}:${min}`;
 }
 
-loadTasks();
 loadFilter();
+loadTasks();
 renderTasks();
 updateActiveFilterButton();
